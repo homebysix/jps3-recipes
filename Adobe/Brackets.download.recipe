@@ -18,36 +18,34 @@
 	<key>Process</key>
 	<array>
 		<dict>
-			<key>Processor</key>
-			<string>URLTextSearcher</string>
-            <key>Arguments</key>
-            <dict>
-				<key>url</key>
-				<string>%latest_github_url%</string>
-				<key>re_pattern</key>
-				<string>(?P&lt;url_path&gt;/adobe/brackets/.*/?Brackets.*\.dmg)</string>
+			<key>Arguments</key>
+			<dict>
 				<key>re_flags</key>
 				<array>
 					<string>IGNORECASE</string>
 				</array>
-            </dict>
+				<key>re_pattern</key>
+				<string>(?P&lt;url_path&gt;/adobe/brackets/.*/?Brackets.*\.dmg)</string>
+				<key>url</key>
+				<string>%latest_github_url%</string>
+			</dict>
+			<key>Processor</key>
+			<string>URLTextSearcher</string>
 		</dict>
 		<dict>
-			<key>Processor</key>
-			<string>URLDownloader</string>
 			<key>Arguments</key>
 			<dict>
 				<key>url</key>
 				<string>https://github.com/%url_path%</string>
 			</dict>
+			<key>Processor</key>
+			<string>URLDownloader</string>
 		</dict>
 		<dict>
 			<key>Processor</key>
 			<string>EndOfCheckPhase</string>
 		</dict>
 		<dict>
-			<key>Processor</key>
-			<string>CodeSignatureVerifier</string>
 			<key>Arguments</key>
 			<dict>
 				<key>input_path</key>
@@ -55,6 +53,8 @@
 				<key>requirement</key>
 				<string>identifier "io.brackets.appshell" and anchor apple generic and certificate 1[field.1.2.840.113635.100.6.2.6] /* exists */ and certificate leaf[field.1.2.840.113635.100.6.1.13] /* exists */ and certificate leaf[subject.OU] = JQ525L2MZD</string>
 			</dict>
+			<key>Processor</key>
+			<string>CodeSignatureVerifier</string>
 		</dict>
 	</array>
 </dict>
